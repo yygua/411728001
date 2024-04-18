@@ -1,0 +1,31 @@
+//解析加密后的路径
+function getPath(obj)  
+{  
+  if(obj){  
+	    if (window.navigator.userAgent.indexOf("MSIE")>=1){  
+	        obj.select(); 
+	        var text1 ="";
+	        try{
+	        	text1  = document.selection.createRange().text;
+	        }catch(e){
+	        	text1 = obj.value;
+	        }
+	       
+	        return text1;  
+	    }else if(window.navigator.userAgent.indexOf("Firefox")>=1){  
+	        if(obj.files){  
+	    	  return obj.files.item(0).getAsDataURL();  
+	        }  
+	        return obj.value;  
+	      }  
+	    return obj.value;  
+    } 
+} 
+
+function  getFileName(str){ 
+    if (str != "") {
+        var names = str.split("\\");
+        var pos = names[names.length - 1].lastIndexOf(".");
+        return names[names.length - 1].substring(0, pos);
+    }
+}

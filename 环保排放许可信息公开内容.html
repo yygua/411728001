@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0133)https://permit.mee.gov.cn/permitExt/syssb/wysb/hpsp/hpsp-company-sewage!getxxgkContent.action?dataid=c6dc76f4a7e64fcc82939b1f2a0bb03c -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0">
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+ 
+ 
+ 
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="./环保排放许可信息公开内容_files/aero.css">
+
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/jquery.min.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/baiduStatistics.js.下载"></script>
+
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/json2.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/jquery.artDialog.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/WdatePicker.js.下载"></script><link href="./环保排放许可信息公开内容_files/WdatePicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/jquery.media.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/upload.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/exportWord.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/swfupload.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/handlers.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/fileprogress.js.下载"></script>
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/content.js.下载"></script>
+<!--validate start  -->
+<link rel="stylesheet" href="./环保排放许可信息公开内容_files/validationEngine.jquery.css" type="text/css">
+<link rel="stylesheet" href="./环保排放许可信息公开内容_files/template.css" type="text/css">
+ <script src="./环保排放许可信息公开内容_files/jquery.validationEngine-zh_CN.js.下载" type="text/javascript" charset="utf-8"></script>
+<script src="./环保排放许可信息公开内容_files/jquery.validationEngine.js.下载" type="text/javascript" charset="utf-8"></script>
+<!--validate end  -->
+
+
+<!-- base64  -->
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/jquery.base64.js.下载"></script>
+
+<link rel="stylesheet" type="text/css" href="./环保排放许可信息公开内容_files/xzxk_button.css">
+<link rel="stylesheet" type="text/css" href="./环保排放许可信息公开内容_files/xzxk_style.css">
+<link rel="stylesheet" type="text/css" href="./环保排放许可信息公开内容_files/default.css">
+<link rel="stylesheet" type="text/css" href="./环保排放许可信息公开内容_files/page-base.css">
+
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/urlhanzi.js.下载"></script>
+
+<!-- èªå®ä¹éç¨æ ·å¼ -->
+<link rel="stylesheet" type="text/css" href="./环保排放许可信息公开内容_files/custom.css">
+<!-- æºè½å®¡æ ¸js -->
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/layer.js.下载"></script><link rel="stylesheet" href="./环保排放许可信息公开内容_files/layer.css" id="layui_layer_skinlayercss" style="">
+<script type="text/javascript" src="./环保排放许可信息公开内容_files/intelligent_checking.js.下载"></script>
+<script>
+    var ctx = "/permitExt";
+</script>
+
+
+
+
+
+<title>许可信息公开内容</title>
+<link rel="shortcut icon" type="image/x-icon" href="https://permit.mee.gov.cn/permitExt/gis/img/favicon.ico">
+<link rel="stylesheet" href="./环保排放许可信息公开内容_files/default(1).css">
+<link rel="stylesheet" href="./环保排放许可信息公开内容_files/app.css">
+<script src="./环保排放许可信息公开内容_files/aes.js.下载"></script>
+<script src="./环保排放许可信息公开内容_files/mode-ecb-min.js.下载"></script>
+<script type="text/javascript">
+var listJosn  = "" ;
+var pwd = '9879baee9b743617' ;
+var ctx='/permitExt'
+/**
+function Decrypt(word){
+	pwd = CryptoJS.enc.Utf8.parse(pwd); 
+	var decrypt = CryptoJS.AES.decrypt(word, pwd, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});  
+    return CryptoJS.enc.Utf8.stringify(decrypt).toString();  
+	//return CryptoJS.AES.decrypt(word,pwd).toString(CryptoJS.enc.Utf-8);
+}
+*/
+function Decrypt(word){  
+    var key = CryptoJS.enc.Utf8.parse(pwd);   
+    var decrypt = CryptoJS.AES.decrypt(word, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});  
+    return CryptoJS.enc.Utf8.stringify(decrypt).toString();  
+}  
+$(document).ready(function() {
+	var word = 'okGS6RfcxlbytqP83OrxMvdmFQAV3uFiOZZjrShJZ7QXHeMrYeVXg2foUigXolnNQhWeRy1AhsNE4xl9soC9MYU7PhdoVsxGXw+IbsyZ/RMwZFOKvIkH2Sga7Z5U92H+SRhOTyetlZVGhBxYW23P305AvgCajSQFJzRn3wq7hoGS+xj++OFKjIZyRAEunaVHQxdFtlldshs4s/Z/xtUNPLZ+3+k7xj8U4+Qvj0I5es7VsmuLHBjUHvvC3wx+2nGF8yGzC9rJprNDVY6w/p5fKUGrWItmLLHppTDNhVhuhYaMkNcageq5lSGMPpqIQER5PJhwhz9YfoG2fu7STo8Bg4enZ3GKraE4qEA0JdyY/aRxwNSICZ5uEG1oUtKSB1EM2uNFH1SPfQMiKs/rgPf0DsIphERoXvrBUl6vRq2CMOYt7PHxGUfcqShZi9hvbB1L/qvjyWggagKFSGrSGDt6Nk1d360b9fH81iKcYcASiGHGr5/yi7Sp1JZR3vYz359LlpBuoDS7QjZWcQlw+22CPGWqNBEi03Yuya6Jd4kGfnvkbuM/ZTTPGiuyn7Uyc8jv1BHWwPLtKY7YNbzNbr1mXk6QSyBc3mRhllZWCJiw4vrjM2e6Xl+p15PQj5atskUXiNDadoGmd8vqVGAu7OXAPvBc3rhLtorTBBOTw5jErwhlex705cR1Y9GabBNKQvMA' ;
+
+	listJosn = Decrypt(word);
+	
+	var spdataMap_zywrwlbid="fq, fs";
+	var zywrwlb = "";
+	if(spdataMap_zywrwlbid.length>0){
+		var arr = spdataMap_zywrwlbid.split(",");
+		for (var k = 0; k < arr.length; k++) {
+			if("fq"==arr[k]){
+				arr[k]=","+"废气";
+				zywrwlb+=arr[k];
+			}else if("fs"==arr[k]){
+				arr[k]=","+"废水";
+				zywrwlb+=arr[k];
+			}else if(" fs"==arr[k]){
+				arr[k]=","+"废水";
+				zywrwlb+=arr[k];
+			}
+		}
+	}
+    if(zywrwlb!=""){
+    	zywrwlb=zywrwlb.substring(1);
+    }
+    $("#zywrwlbid").html(zywrwlb);
+    
+    var spdataMap_airemissionid="PFXS_1, PFXS_2";
+	var airemission = "" ;
+	if(spdataMap_airemissionid.length>0){
+		var arr1 = spdataMap_airemissionid.split(",");
+		for (var k = 0; k < arr1.length; k++) {
+			if("PFXS_1"==arr1[k]){
+				arr1[k]=","+"有组织";
+				airemission+=arr1[k];
+			}else if("PFXS_2"==arr1[k]){
+				arr1[k]=","+"无组织";
+				airemission+=arr1[k];
+			}else if(" PFXS_2"==arr1[k]){
+				arr1[k]=","+"无组织";
+				airemission+=arr1[k];
+			}
+		}
+	}
+    if(airemission!=""){
+    	airemission=airemission.substring(1);
+    }
+    $("#airemissionid").html(airemission);
+    
+    var spdataMap_wateremissionname="间断排放，排放期间流量不稳定且无规律，但不属于冲击型排放";
+	var wateremissionname = "";
+	if(spdataMap_wateremissionname.length>0){
+		var arr1 = spdataMap_wateremissionname.split("@");
+		for (var k = 0; k < arr1.length; k++) {
+			wateremissionname+="; "+arr1[k];
+		}
+	}
+    if(wateremissionname!=""){
+    	wateremissionname=wateremissionname.substring(1);
+    }
+    $("#wateremissionname").html(wateremissionname);
+    
+});
+
+//点击查看的方法
+function showItemCard(dataid,state,cardtype){ 
+	$("#dataid").val(dataid);//项目唯一id
+	$("#operate").val("readonly");//request：页面必填 editable：可编辑   readonly：只读
+	$("#state").val("查看");//当前节点
+	$("#cardtype").val(cardtype);//项目卡对应的xml名称
+	document.all.jumpform.action="/permitExt/common/itemcard/item-card!itemcardmain.action";
+	document.all.jumpform.submit();
+}
+
+
+// 监督执法信息-详情查看
+function showSupervision(pkid){
+    $.dialog.openhanzi('https://permit.mee.gov.cn/perxxgkinfo/syssb/wysb/hpsp/hpsp-company-sewage!showSupervision.action?pkid='+pkid,{
+        lock: true,
+        background: '#333', // 背景色
+        opacity: 0.30,  // 透明度
+        title:'监督执法信息',
+        lock:'ture',
+        width:'1250px',
+        height:'500px',
+        fixed: true,
+        close:function(){
+            
+        }
+    }); 
+ }
+function setIframeHeight(iframe) {
+	if (iframe) {
+	var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+	if (iframeWin.document.body) {
+	iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+	}
+	}
+	};
+
+	window.onload = function () {
+	setIframeHeight(document.getElementById('external-frame'));
+	};
+
+</script>
+<style media="print">
+.Noprint{display:none;}
+.Noborder{border-width:0;}
+.PageNext{page-break-after: always;}
+body{font-family:"Microsoft YaHei";}
+</style>
+</head>
+
+<body style="font-family:Microsoft YaHei;overflow-x:hidden;"><div class="" style="display: none; position: absolute;"><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_nw"></td><td class="aui_n"></td><td class="aui_ne"></td></tr><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move;"></div><a class="aui_close" href="javascript:/*artDialog*/;">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 5px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div>
+<div style="width: 100%;">
+	<table style="width:99%;">
+		<colgroup>
+	    	<col width="77%">
+	    	<col width="14%">
+	    	<col width="9%">
+	    </colgroup>
+		<tbody><tr>
+			<td>
+				<p style="font-size:36px;">河南派科包装技术有限公司</p>
+				<input type="hidden" id="longitude" value="114.01010">
+				<input type="hidden" id="latitude" value="33.16990">
+				<input type="hidden" id="opelngd" value="114">
+				<input type="hidden" id="opelngf" value="0">
+				<input type="hidden" id="opelngm" value="36.36">
+				<input type="hidden" id="opelatd" value="33">
+				<input type="hidden" id="opelatf" value="10">
+				<input type="hidden" id="opelatm" value="11.64">
+				<input type="hidden" id="isout" value="true">
+				
+			</td>
+			<td>&nbsp;</td>
+			
+			<td rowspan="3">
+				<img style="float: right;" height="110px;" width="110px;" alt="" id="erweima" src="./环保排放许可信息公开内容_files/2797e652be924ceca84fb7029fba9a58.jpg">
+			</td>
+		</tr>
+		<tr>
+			<td>
+	            <p style="font-weight: bold;color: green;font-size: 14px;">
+				          生产经营场所地址：河南省驻马店市遂平县富强路北段&nbsp;&nbsp;&nbsp;&nbsp;
+				          行业类别：纸和纸板容器制造&nbsp;&nbsp;&nbsp;&nbsp;
+				          所在地区：河南省-驻马店市-遂平县&nbsp;&nbsp;&nbsp;
+				          发证机关：驻马店市生态环境局遂平分局
+	                
+				</p>
+			</td>
+			<td align="left" style="padding-bottom: 9px;">
+                   
+				
+				
+				
+                       
+				    <a style="color: green;font-weight: bold;font-size: 14px;text-decoration: underline;" href="https://permit.mee.gov.cn/perxxgkinfo/syssb/xkgg/xkgg!downloadFile.action?method=download&amp;fileType=fbfile&amp;datafileid=d3b85ebeff644a8180398e39ddb36431&amp;dataid=2797e652be924ceca84fb7029fba9a58">排污许可证正本</a>
+				    <br>
+				    
+                    
+                    
+                    
+                        <a style="color: green;font-weight: bold;font-size: 14px;text-decoration: underline;" target="view_window" href="https://permit.mee.gov.cn/perxxgkinfo/syssb/wysb/hpsp/hpsp-company-sewage!showImage.action?dataid=2797e652be924ceca84fb7029fba9a58">排污许可证副本</a>
+                    
+				
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<br>
+<div style="width: 100%;">
+	<div style="width:96%;float: left;">
+				<table style="line-height: 32px;table-layout: fixed;" class="tab0">
+					<!-- <colgroup>
+				    	<col width="28%" ></col>
+				    	<col width="15%" ></col>
+				    	<col width="8%" ></col>
+				    	<col width="16%" ></col>
+				    	<col width="30%" ></col>
+				    </colgroup> -->
+					<tbody><tr style="width: 100%;table-layout: fixed;" align="center">
+						<th style="width: 35%;">许可证编号</th>
+						<th style="width: 10%;">业务类型</th>
+						<th style="width: 10%;">版本</th>
+						<th style="width: 15%;">办结日期</th>
+						<th style="width: 30%;">有效期限</th>
+					</tr>
+					
+						
+							
+								<tr align="center">
+									<td style="word-break: break-all;">91411728MA40T6YB5B001P</td>
+									<td>
+										
+											申领
+										
+										
+										
+										
+										
+										
+                                        
+                                        
+									</td>
+									<td>
+										
+											1
+										
+										
+									</td>
+									<td>
+										
+											2022-01-24
+										
+									</td>
+									<td>2022-01-24&nbsp;至&nbsp;2027-01-23</td>
+								</tr>
+							
+						
+							
+								<tr align="center">
+									<td style="word-break: break-all;">91411728MA40T6YB5B001P</td>
+									<td>
+										
+										
+										
+										
+										
+										
+                                        
+                                                                                                              重新申请
+                                        
+                                        
+									</td>
+									<td>
+										
+											2
+										
+										
+									</td>
+									<td>
+										
+											2024-03-01
+										
+									</td>
+									<td>2024-03-01&nbsp;至&nbsp;2029-02-28</td>
+								</tr>
+							
+						
+					
+				</tbody></table>
+				<br>
+				<hr width="99%" color="green" size="1">
+				<table style="height: 100px;">
+					
+						
+						
+							<tbody><tr align="center">
+								<td><a href="https://permit.mee.gov.cn/perxxgkinfo/xkgkAction!xkgk.action?xkgk=approveAtmosphere_xkzgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;isVersion=&amp;operate=readonly" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_0301.png"></a></td>
+								<td><a href="https://permit.mee.gov.cn/perxxgkinfo/xkgkAction!xkgk.action?xkgk=approveWater_xkzgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;isVersion=&amp;operate=readonly" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_0501.png"></a></td>
+								<td><a href="https://permit.mee.gov.cn/perxxgkinfo/xkgkAction!xkgk.action?xkgk=waterFqwrw_xzkgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;isVersion=&amp;operate=readonly&amp;isAdmin=basetrue" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_0701.png"></a></td>
+								<td><a href="https://permit.mee.gov.cn/perxxgkinfo/xkgkAction!xkgk.action?xkgk=approvespreport_xkzgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;operate=readonly" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_0901.png"></a></td>
+								<td><a href="https://permit.mee.gov.cn/perxxgkinfo/xkgkAction!xkgk.action?xkgk=approvespinfoopen_xkzgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;operate=readonly" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_1601.png"></a></td>
+								<td><a href="https://permit.mee.gov.cn/perxxgkinfo/xkgkAction!xkgk.action?xkgk=accountxk_xkzgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;operate=readonly" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_1501.png"></a></td>
+							</tr>
+							<tr align="center">
+								<td><a href="https://permit.mee.gov.cn/permitExt/xkgkAction!xkgk.action?xkgk=approveothercon_xkzgk&amp;dataid=2797e652be924ceca84fb7029fba9a58&amp;operate=readonly" target="_blank"><img style="display:block;width:100%;" src="./环保排放许可信息公开内容_files/btn_1701.png"></a></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						
+					
+					
+				</tbody></table>
+				<br>
+				<table id="apply_table" class="edit-grid" style="width:100%;border: 1px;">
+			    	<colgroup>
+				    	<col width="30%">
+				    	<col width="70%">
+				    </colgroup>	
+					<tbody><tr>
+						<th style="border-left:#CCCCCC 1px solid;">主要污染物类别：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left"><span id="zywrwlbid">废气,废水</span></td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">大气主要污染物种类：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left">非甲烷总烃</td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">大气污染物排放规律：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left"><span id="airemissionid">有组织,无组织</span></td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">大气污染物排放执行标准：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left">河南省地方标准-印刷工业挥发性有机物排放标准DB41/ 1956—2020,大气污染物综合排放标准GB 16297-1996</td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">废水主要污染物种类：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left">pH值,色度,悬浮物,五日生化需氧量,化学需氧量,氨氮（NH3-N）,总磷（以P计）</td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">废水污染物排放规律：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left"><span id="wateremissionname"> 间断排放，排放期间流量不稳定且无规律，但不属于冲击型排放</span></td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">废水污染物排放执行标准：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left">污水综合排放标准GB8978-1996</td>
+					</tr>
+					<tr>
+						<th style="border-left:#CCCCCC 1px solid;">排污权使用和交易信息：</th>
+						<td style="padding-left: 10px;word-break: break-all;" align="left">/</td>
+					</tr>
+				</tbody></table>
+			</div>
+			
+</div>
+<br>
+<div style="width: 100%;float: none;">
+<br>
+	<!-- <hr width="98%" color='green' size=1 /> -->
+<br>
+	<iframe src="./环保排放许可信息公开内容_files/xkgkAction!xkgk.html" frameborder="0" scrolling="no" style="width:99%;border: 0px" onload="setIframeHeight(this)" height="427"></iframe>
+	<br><br><br>
+	<iframe src="./环保排放许可信息公开内容_files/saved_resource.html" frameborder="0" scrolling="yes" style="width:99%;border: 0px;height: 660px;"></iframe>
+	<br><br><br>
+</div>
+<form action="https://permit.mee.gov.cn/permitExt/syssb/wysb/hpsp/hpsp-company-sewage!getxxgkContent.action?dataid=c6dc76f4a7e64fcc82939b1f2a0bb03c" target="_blank" method="post" id="jumpform" name="jumpform">
+	<input name="dataid" id="dataid" type="hidden" value=""> 
+	<input name="nid" id="nid" type="hidden" value=""> 
+	<input name="actionType" id="actionType" type="hidden" value=""> 
+	<input name="operate" id="operate" type="hidden" value=""> 
+	<input name="state" id="state" type="hidden" value=""> 
+	<input name="cardtype" id="cardtype" type="hidden" value=""> 
+	<input name="cursel" id="cursel" type="hidden" value="">
+	<input name="csrfRandom" type="hidden" value="">
+</form>
+
+
+<div style="display: none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; cursor: move; opacity: 0; background: rgb(255, 255, 255);"></div></body></html>

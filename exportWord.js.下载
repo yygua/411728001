@@ -1,0 +1,49 @@
+/**
+ * 传data参数的时候，应按照下面的例子拼写，
+ * var data = "{gllb:\"0000000000\",sltime:\"222222\"}";
+ * 这样在传参的时候就能识别出来
+ * 根据cardid拼写不同的data
+ * @param xmlName
+ * @param nodeid
+ */
+function expWordModel(xmlName,nodeid){
+//	var cardid = this.selectcardid;
+	var data = "{gllb:\"0000000000\",sltime:\"222222\"}";
+	$("#div_wordModel").html("");
+	//导出之前先查看是否有多个模版
+	$.ajax({
+		type:'post',
+		url:"/xzxkbj/xtgl/word/word-model!getPkidByNodeidAndCardid.action",
+		data:{"nodeid":nodeid},
+		async:false,
+		success:function(msg){
+			out = JSON.parse(msg);
+			var html = "";
+			var len = out.length;
+			if(len>1){
+				for(var i = 0 ; i < out.length; i++){
+					//html += "<a href='/xzxkbj/java2word.do?data={gllb:\"0000000000\"}&fileName="+out[i].DATAFILEID+"&temptype="+out[i].DATAFILENAME+"&wordModel=wordModel'><font color='blue'>"+out[i].DATAFILENAME+"</font></a></br>";
+					html += "<a href='javascript:void(0)' onclick=openWordModel('"+out[i].DATAFILEID+"','"+out[i].DATAFILENAME+"','"+data+"')><font color='blue'>"+out[i].DATAFILENAME+"</font></a></br>";
+					
+				}
+				$("#div_wordModel").html(html);
+				if($("#div_wordModel").is(":visible")){
+					$('#div_wordModel').hide('slow');
+				}else{
+					$("#div_wordModel").show("slow");
+				}
+			}else if(len==0){
+				alert("您好，没有对应的模版，请你联系管理员");
+			}else{
+				window.location.href="/xzxkbj/java2word.do?fileName="+out[0].DATAFILEID+"&temptype="+out[0].DATAFILENAME+"&wordModel=wordModel&data="+data;
+				/*var url="${ctx}/java2word.do?data="+data+"&type=71&title=过程控制单";
+				$("#expForm").attr("action",url);
+				$("#expForm").submit();*/
+			}
+		}
+	});
+}
+
+function openWordModel(fileName,temptype,data){debugger
+	window.open("/xzxkbj/java2word.do?fileName="+fileName+"&temptype="+temptype+"&wordModel=wordModel&data="+data);
+}

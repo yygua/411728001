@@ -1,0 +1,316 @@
+
+/**
+ * 给含有id的页面元素增加双击事件
+ * dataid  数据唯一id
+ * arrIds  页面传递的id数组
+ */
+function addDbClickForId(dataid, arrIds, ctx){
+	//第一步：给页面传递过来的每一个id都加上双击事件
+	if(arrIds.length>0){
+		for(var i=0;i<arrIds.length;i++){
+			var id = arrIds[i];
+			$("#"+id).live('dblclick', function(){
+				//调用增加修改意见方法
+				saveOrUpdate(dataid,this.id,ctx);
+			});
+		}
+	}
+}
+
+/**
+ * 增加或修改意见
+ * @param dataid  数据唯一id
+ * @param fileid  需要加意见的id元素	
+ */
+function saveOrUpdate(dataid,fileid,ctx){
+	 $.dialog.open(ctx+'/common/content/content!goOpinion.action?dataid='+dataid+'&fileid='+fileid,{
+		   	lock: true,
+		    background: '#333', // 背景色
+		    opacity: 0.30,	// 透明度
+		   	title:'参考意见',
+			lock:'ture',
+			width:'400px',
+			height:'250px',
+			fixed: true
+	});  
+}
+
+/**
+ * 查询出这条数据所有的参考意见
+ * @param dataid
+ */
+function getAllOpinion(dataid,ctx){
+	$.ajax({
+		   type: "POST",
+		   url:ctx+"/common/content/content!getAllOpinion.action",
+		   data:{"dataid":dataid},
+		   async:false,
+		   success: function(json){
+			   if(json){
+				   var list = eval(json);
+				   $(list).each(function(i,n){
+					   var id = n.FILEID;
+					   var opinion = n.ROPINION;
+					   $("#"+id).attr("title",opinion);
+					   $("#"+id).attr("style","color:red");
+				   });
+			   }
+		   }
+	});
+}
+
+/**
+ * 修改外网参考意见数据状态
+ * @param dataid
+ * @param ctx
+ */
+function updateOpinionStatus(dataid,ctx){
+	$.ajax({
+		   type: "POST",
+		   url:ctx+"/common/content/content!updateOpinionStatus.action",
+		   data:{"dataid":dataid},
+		   async:false,
+		   success: function(){
+			   
+		   }
+	});
+}
+
+
+
+/**
+ * 查询补充填报变更记录
+ * @param dataid
+ */
+function getAllBctbOpinion(dataid,ctx,tableNames,tablenum,comparindex,editAttrFileids){
+	$.ajax({
+		   type: "POST",
+//		   url:ctx+"/common/content/content!getAllBctbOpinion.action",
+		   url:ctx+"/common/markup/markup!getMarkupData.action",
+		   data:{"dataid":dataid,"tableNames":tableNames,"tablenum":tablenum,"comparindex":comparindex},
+		   async:false,
+		   success: function(json){
+			   if(json){
+				   var list = eval(json);
+				   $(list).each(function(i,n){
+					   var fileid = n.FILEID.toLowerCase();;
+					   var bctype = n.BCTYPE; //1：新增  2：变更
+					   var tablename = n.TABLENAME.toLowerCase();
+					   var tablepkid = n.TABLEPKID;
+					   var tablepkidvalue = n.TABLEPKIDVALUE;
+					   var tablenum = n.TABLENUM;
+					   //show_这个是在itemcard_right.js里面特殊添加的
+					   $("#show_"+fileid).attr("style","color:red");
+					   //这个是单元格变色
+					   //$("#th_"+fileid).attr("style","color:red");
+					   
+					   //1：新增  2：变更
+					   if(bctype==1){
+						   $("#tr_"+tablepkidvalue).attr("style","color:#00933B");
+						   $("td[id$="+tablepkidvalue+"]").css("color","#00933B");
+						   return true;
+						   //表二特殊处理（匹配input  id  结尾相同的）
+						   if(tablenum == '2.1' || tablenum == '2.2'){
+							   $("td[id$="+tablepkidvalue+"]").css("color","#00933B");
+							}else if(tablenum == '3.1.gt'||tablenum=='4.2.1.1'||
+									tablenum=='4.1.1'||tablenum=='2.6.1'||
+									tablenum=='3.8'||tablenum=='3.1.df'||tablenum=='3.1.dd'||tablenum=='3.1.zy'||
+                               tablenum=='110.1'||tablenum=='110.2'||tablenum=='110.3'||tablenum=='110.4'||tablenum=='17.1'||tablenum=='17.2'
+                            	   ||tablenum=='3.2.1.qc'||tablenum=='3.2.1.fqzy'||tablenum=='3.2.1.dzhy' ||tablenum=='5.3.5.1' ||tablenum=='16.1.4'){
+
+								
+								//表三多表格合并特殊处理（匹配input  id  结尾相同的）表二表三表四表五石化合并单元格特殊处理 
+								 $("td[id$="+tablepkidvalue+"]").css("color","#00933B");
+								 console.log("tablepkidvalue")
+							}else{
+								//行变色
+								$("#tr_"+tablepkidvalue).attr("style","color:#00933B");
+								//有组织水泥申请特殊时段许可排放量限值和错峰生产时段月许可排放量限值特殊处理
+								if(tablenum == '6'){
+									$(".tr_"+tablepkidvalue).attr("style","color:#00933B");//一行多列无法添加多个重复id
+								 }
+							}
+					   }else if(bctype==2){
+						   //自定义污染物特殊处理
+						   if(tablename == 'pwxk_item_enter_wrw'){
+							   $("#tr_"+tablepkidvalue).attr("style","color:red");
+						   }
+						   //大气排放口经度纬度需要特殊处理（一个td下多个input显示框 ）
+						   if(tablename == 'pwxk_item_gas_dqinfo'||tablename=='PWXK_ITEM_WATER_FSEMISSION'){
+							   if(fileid == 'drainlngd' || fileid == 'drainlngf' || fileid == 'drainlngm'){
+								   //经度(ID为固定的)
+								   $("#drainlngd"+tablepkidvalue).css("color","red");
+							   }else if(fileid == 'drainlatd' || fileid == 'drainlatf' || fileid == 'drainlatm'){
+								   //纬度(ID为固定的)
+								   $("#drainlatd"+tablepkidvalue).css("color","red");
+							   }else{
+								   //单个字段变色
+								   $("#"+fileid+tablepkidvalue).attr("style","color:red");
+							   }
+						   }else{
+							   var upfileid=(fileid+"").toUpperCase();
+							   //$("#"+fileid+tablepkidvalue).attr("style","color:red");
+							   //$("#"+upfileid+tablepkidvalue).attr("style","color:red");
+							   $("#"+fileid+tablepkidvalue).css("color","red");
+							   $("#"+upfileid+tablepkidvalue).css("color","red");
+							   
+						   }
+					   }
+				   });
+			   }
+		   }
+	});
+}
+
+
+
+
+//将指定属性设为不可编辑
+function changeToUnEditable(){
+	var $tag;	
+	$tag=$("td[unedit],th[unedit]");
+	$.each($tag,function(){
+		$(this).children().each(function(){			
+			var ctrlType=($(this).attr("type")+"").toLowerCase();
+			
+			if($(this).is('input')){		
+				switch(ctrlType)
+				{
+				case "text":
+				case "textarea":
+				case "select-one":
+					$(this).attr("readonly","readonly");
+					break;
+				case "button":
+					//$("#id").attr("readonly","readonly");
+					$(this).hide(); 
+					break;
+				case "img":
+					//$("#id").attr("readonly","readonly");
+					$(this).hide(); 
+					break;
+				default :
+					break;
+				}
+			}else if($(this).is('select')){
+				$(this).attr("disabled","true");
+				$(this).attr("selectunedit","selectunedit");
+			}else if($(this).is('textarea')){
+				$(this).attr("readonly","readonly");
+			}else if($(this).is('img')){
+				$(this).hide();
+			}	
+		});
+		
+		
+	});
+}
+
+/**
+ * 查询补充填报变更记录
+ * @param dataid
+ */
+function allAddToEditable(dataid,ctx,tableNames,tablenum,comparindex,editAttrFileids){
+	$.ajax({
+		   type: "POST",
+		   url:ctx+"/common/content/content!getAllBctbOpinion.action",
+		   data:{"dataid":dataid,"tableNames":tableNames,"tablenum":tablenum,"comparindex":comparindex},
+		   async:false,
+		   success: function(json){
+			   if(json){
+				   var list = eval(json);
+				   $(list).each(function(i,n){
+					   var fileid = n.FILEID.toLowerCase();;
+					   var bctype = n.BCTYPE; //1：新增  2：变更
+					   var tablename = n.TABLENAME.toLowerCase();
+					   var tablepkid = n.TABLEPKID;
+					   var tablepkidvalue = n.TABLEPKIDVALUE;
+					   
+					   //1：新增  2：变更
+					   if(bctype==1){
+						   	//可编辑	
+				   			var fileids = editAttrFileids.split(",");
+				   			for(var i=0;i<fileids.length;i++){
+				   				var editfileid=fileids[i];
+				   				changeToEditable(editfileid,tablepkidvalue);
+				   			}
+						   
+					   }
+				   });
+			   }
+		   }
+	});
+}
+
+
+
+
+
+//将新增数据部分列可编辑
+
+function changeToEditable(fileid,tablepkidvalue){
+		var $tag;
+		var hasimg;
+		var hasbutton;
+		if($("td[id="+fileid+tablepkidvalue+"]").length>0){			
+			$tag=$("td[id='"+fileid+tablepkidvalue+"']").children();
+			hasimg=$("td[id='"+fileid+tablepkidvalue+"']").find("img").length>0;
+			hasbutton=$("td[id='"+fileid+tablepkidvalue+"']").find("input[type='button']").length>0;
+		}else if($("input[id='"+fileid+tablepkidvalue+"']").length>0){
+			$tag=$("input[id='"+fileid+tablepkidvalue+"']").parent().children();
+			hasimg=$("td[id='"+fileid+tablepkidvalue+"']").parent().find("img").length>0;
+			hasbutton=$("td[id='"+fileid+tablepkidvalue+"']").find("input[type='button']").length>0;
+		}else{
+			return;
+		}
+		
+		$.each($tag,function(){
+			var ctrlType=($(this).attr("type")+"").toLowerCase();
+			if($(this).is('input')){			
+				switch(ctrlType)
+				{
+				case "text":
+					if(!hasimg && !hasbutton){
+						$(this).removeAttr("readonly"); 
+					}
+					break;
+				case "textarea":
+				case "select-one":
+					$(this).removeAttr("readonly"); 
+					break;
+				case "button":
+					//$("#id").attr("readonly":"readonly");
+					$(this).show(); 
+					break;
+				case "img":
+					//$("#id").attr("readonly","readonly");
+					$(this).show(); 
+					break;
+				default :
+					break;
+				}
+			}else if($(this).is('select')){
+				$(this).removeAttr("disabled");
+				$(this).removeAttr("selectunedit");
+			}else if($(this).is('textarea')){
+				$(this).removeAttr("readonly");
+			}else if($(this).is('img')){
+				$(this).show();
+			}
+		});
+	
+}
+//保存之前取消不可编辑（防止获取不到数据）
+function selecttoedit(){
+	$("select[selectunedit]").each(function(){
+		$(this).removeAttr("disabled");
+	})
+}
+//保存成功后恢复不可编辑（防止用户修改数据）
+function selecttounedit(){
+	$("select[selectunedit]").each(function(){
+		$(this).attr("disabled","true");
+	})
+}
+
+

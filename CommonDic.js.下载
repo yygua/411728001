@@ -1,0 +1,165 @@
+;(function ($) {
+    //定义Jquery的扩展方法
+    $.fn.CommonDic = function (options,param) {
+        if(typeof options == 'string'){
+            return $.fn.CommonDic.methods[options](this,param);
+        }
+        //2、将调用时候传过来的参数和default参数合并
+        options = $.extend({},$.fn.CommonDic.defaults,options|| {});
+        //3、添加默认值
+        var target = $(this);
+        $.ajax({
+            type: "get",
+            url:baseServerUrl+"system/dictionary/getCommonDic",
+            data:{
+                datasource:options.datasource,
+                params:options.params
+            },
+            dataType: 'JSON',
+            async:false,
+            success: function (data, status) {
+                if(status=="success"){
+                    if(data.body.resultCode=="0"){
+                        var readonly = options.readonly;
+                        if(readonly){
+                            readonly = "readonly";
+                        }
+                        var required = options.required;
+                        if(required){
+                            required = "required";
+                        }
+                        var items = [];
+
+                        for (var i = 0; i < data.body.entity.length; i++) {
+                            switch (options.type) {
+                                case "select":
+                                    if(options.isNull){
+                                        if(0==i){
+                                            items.push('<option value=""></option>');
+                                        }
+                                    }
+                                    if(options.selectValue){
+                                        if(typeof options.selectValue == 'string'){
+                                            if(options.selectValue.indexOf (data.body.entity[i].key)!= -1){
+                                                items.push('<option value="'+data.body.entity[i].key+'" selected>'+data.body.entity[i].value+'</option>')
+                                            }else {
+                                                items.push('<option value="'+data.body.entity[i].key+'">'+data.body.entity[i].value+'</option>')
+                                            }
+                                        }else if(typeof options.selectValue == 'boolean'){
+                                            if(options.selectValue){
+                                                if(options.selectPosition===i){
+                                                    items.push('<option value="'+data.body.entity[i].key+'" selected>'+data.body.entity[i].value+'</option>')
+                                                }else {
+                                                    items.push('<option value="'+data.body.entity[i].key+'">'+data.body.entity[i].value+'</option>')
+                                                }
+                                            }else {
+                                                items.push('<option value="'+data.body.entity[i].key+'">'+data.body.entity[i].value+'</option>')
+                                            }
+                                        }
+                                    }else {
+                                        if(options.selectPosition!=null){
+                                            if(options.selectPosition===i){
+                                                items.push('<option value="'+data.body.entity[i].key+'" selected>'+data.body.entity[i].value+'</option>')
+                                            }else {
+                                                items.push('<option value="'+data.body.entity[i].key+'">'+data.body.entity[i].value+'</option>')
+                                            }
+                                        }else {
+                                            items.push('<option value="'+data.body.entity[i].key+'">'+data.body.entity[i].value+'</option>')
+                                        }
+                                    }
+                                    break;
+                                case "radio":
+                                    if(options.selectValue) {
+                                        if (options.selectValue === data.body.entity[i].key) {
+                                            items.push('<input type="radio" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'" checked>');
+                                        } else {
+                                            items.push('<input type="radio" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'">');
+                                        }
+                                    }else {
+                                        if (options.selectPosition === i) {
+                                            items.push('<input type="radio" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'" checked>');
+                                        } else {
+                                            items.push('<input type="radio" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'">');
+                                        }
+                                    }
+                                    break;
+                                case "checkbox":
+                                    var checkedStr = '<input type="checkbox" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'" lay-skin="primary"  checked>';
+                                    var noCheckedStr = '<input type="checkbox" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'" lay-skin="primary" >';
+                                    var readonly_checkedStr = '<input type="checkbox" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'" lay-skin="primary"  checked disabled="disabled">';
+                                    var readonly_noCheckedStr = '<input type="checkbox" name="'+options.elementName+'" '+readonly+' value="'+data.body.entity[i].key+'" lay-filter="'+options.elementName+'" title="'+data.body.entity[i].value+'" lay-verify="'+required+'" lay-skin="primary" disabled="disabled">';
+
+                                    if(options.selectValue){
+                                        if(typeof options.selectValue == 'string'){
+                                            if(options.selectValue.indexOf (data.body.entity[i].key)!= -1){
+                                                if(null!=options.disabled&&options.disabled.indexOf(data.body.entity[i].key)!=-1){
+                                                    items.push(readonly_checkedStr);
+                                                }else {
+                                                    items.push(checkedStr);
+                                                }
+                                            }else {
+                                                if(null!=options.disabled&&options.disabled.indexOf(data.body.entity[i].key)!=-1){
+                                                    items.push(readonly_noCheckedStr);
+                                                }else {
+                                                    items.push(noCheckedStr);
+                                                }
+                                            }
+                                        }else if(options.selectValue instanceof Array){
+                                            for (var j = 0; j < options.selectValue.length; j++) {
+                                                if(options.selectValue[i]===data.body.entity[i].key){
+                                                    items.push(checkedStr);
+                                                }else {
+                                                    items.push(noCheckedStr);
+                                                }
+                                            }
+                                        }else if(typeof options.selectValue == 'boolean'){
+                                            if(options.selectValue){
+                                                items.push(checkedStr);
+                                            }else {
+                                                items.push(noCheckedStr);
+                                            }
+                                        }
+                                    }else {
+                                        if(null!=options.disabled&&options.disabled.indexOf(data.body.entity[i].key)!=-1){
+                                            items.push(readonly_noCheckedStr);
+                                        }else {
+                                            items.push(noCheckedStr);
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                        target.empty();
+                        target.append(items.join(''));
+                        options.onLoadComplate(data.body.entity);
+                    }else {
+                        options.onError(data.body.resultContent);
+                    }
+                }else {
+                    options.onError("网络错误");
+                }
+            },
+
+        })
+    }
+
+    //定义默认参数
+    $.fn.CommonDic.defaults = {
+        type:"select",//select,radio,checkbox
+        datasource:"dictionary",//数据源
+        isNull:true,
+        params:"",//参数
+        selectValue:null,//当前选中的值
+        selectPosition:null,//当前选中下标
+        elementName:"",//元素名称
+        readonly:false,//是否只读
+        required:false,//是否必填
+        onLoadComplate:function (data) {
+
+        },
+        onError:function (error) {
+
+        }
+    };
+
+})(jQuery);

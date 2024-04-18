@@ -1,0 +1,359 @@
+jQuery.extend({
+    //获取当年
+    getYear:function () {
+        return moment().format("YYYY");
+    },
+    //获取随机数
+    getUUID:function () {
+        function S4() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        }
+        return (S4()+S4()+S4()+S4()+S4()+S4()+S4()+S4());
+    },
+    //格式化金钱
+    moneyFormat:function (money) {
+        var str = (money/1).toFixed(2) + '';
+        var intSum = str.substring(0,str.indexOf(".")).replace( /\B(?=(?:\d{3})+$)/g, ',' );//取到整数部分
+        var dot = str.substring(str.length,str.indexOf("."))//取到小数部分搜索
+        var ret = intSum + dot;
+        return ret;
+    },
+    //数组拆分
+    splitArray:function(arr,len){
+        var result = [];
+        for (var i = 0; i < arr.length; i++) {
+            result.push(arr.slice(i,i+len));
+            i+=len;
+        }
+        return result;
+    },
+    //加法函数
+    accAdd:function(arg1, arg2) {
+        var r1, r2, m, c;
+        try {
+            r1 = arg1.toString().split(".")[1].length;
+        }
+        catch (e) {
+            r1 = 0;
+        }
+        try {
+            r2 = arg2.toString().split(".")[1].length;
+        }
+        catch (e) {
+            r2 = 0;
+        }
+        c = Math.abs(r1 - r2);
+        m = Math.pow(10, Math.max(r1, r2));
+        if (c > 0) {
+            var cm = Math.pow(10, c);
+            if (r1 > r2) {
+                arg1 = Number(arg1.toString().replace(".", ""));
+                arg2 = Number(arg2.toString().replace(".", "")) * cm;
+            } else {
+                arg1 = Number(arg1.toString().replace(".", "")) * cm;
+                arg2 = Number(arg2.toString().replace(".", ""));
+            }
+        } else {
+            arg1 = Number(arg1.toString().replace(".", ""));
+            arg2 = Number(arg2.toString().replace(".", ""));
+        }
+        return (arg1 + arg2) / m;
+    },
+    //减法函数
+    accSub:function (arg1, arg2) {
+        if (isNaN(arg1)) {
+            arg1 = 0;
+        }
+        if (isNaN(arg2)) {
+            arg2 = 0;
+        }
+        arg1 = Number(arg1);
+        arg2 = Number(arg2);
+
+        var r1, r2, m, n;
+        try {
+            r1 = arg1.toString().split(".")[1].length;
+        }
+        catch (e) {
+            r1 = 0;
+        }
+        try {
+            r2 = arg2.toString().split(".")[1].length;
+        }
+        catch (e) {
+            r2 = 0;
+        }
+        m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
+        n = (r1 >= r2) ? r1 : r2;
+        return ((arg1 * m - arg2 * m) / m).toFixed(n);
+    },
+    //乘法函数
+    accMul:function (arg1, arg2) {
+        if (isNaN(arg1)) {
+            arg1 = 0;
+        }
+        if (isNaN(arg2)) {
+            arg2 = 0;
+        }
+        arg1 = Number(arg1);
+        arg2 = Number(arg2);
+
+        var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+        try {
+            m += s1.split(".")[1].length;
+        }
+        catch (e) {
+        }
+        try {
+            m += s2.split(".")[1].length;
+        }
+        catch (e) {
+        }
+        return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+    },
+    //除法函数
+    accDiv:function (arg1, arg2) {
+        if (isNaN(arg1)) {
+            arg1 = 0;
+        }
+        if (isNaN(arg2)) {
+            arg2 = 0;
+        }
+        arg1 = Number(arg1);
+        arg2 = Number(arg2);
+
+        var t1 = 0, t2 = 0, r1, r2;
+        try {
+            t1 = arg1.toString().split(".")[1].length;
+        }
+        catch (e) {
+        }
+        try {
+            t2 = arg2.toString().split(".")[1].length;
+        }
+        catch (e) {
+        }
+        with (Math) {
+            r1 = Number(arg1.toString().replace(".", ""));
+            r2 = Number(arg2.toString().replace(".", ""));
+            return (r1 / r2) * pow(10, t2 - t1);
+        }
+    },
+    //iframe内layer弹框封装
+    layerOpen:function(layer,options){
+        layer.open({
+            type:2,
+            title:options.title,
+            content:options.url,
+            area:[options.width,options.height],
+            offset: options.offset?options.offset:'0px',
+            shade:0.3,
+            maxmin:false,
+            success:options.success,
+            cancel:options.cancel
+        })
+    },
+    layerEndOpen:function(layer,options){
+        layer.open({
+            type:2,
+            title:options.title,
+            content:options.url,
+            area:[options.width,options.height],
+            offset: options.offset?options.offset:'0px',
+            shade:0.3,
+            maxmin:false,
+            success:options.success,
+            cancel:options.cancel,
+            end:options.end
+        })
+    },
+    //layui在iframe之外的弹出框
+    layerParentOpen:function(layer,options){
+        if(!layer){
+            layer = layui.layer;
+        }
+        layer.open({
+            type:2,
+            maxmin: true,
+            shadeClose: false,
+            title:options.title,
+            content:options.url,
+            area:[options.width,options.height],
+            shade:0.3,
+            btn: ['<i class="fa fa-check"></i> 确定',
+                '<i class="fa fa-close"></i> 关闭'],
+            btn1: options.onClickSure,
+            btn2: options.onClickCancel,
+            success:options.success,
+            cancel:options.cancel
+        })
+    },
+    //layui在iframe之外的穿梭框封装
+    layerTreeSelect:function(layer,options,window){
+        layer.open({
+            type:2,
+            maxmin: true,
+            shadeClose: false,
+            title:options.title,
+            content:baseServerUrl+"system/link?url=system/common/module/TreeSelect",
+            area:["800px","550px"],
+            shade:0.3,
+            btn: ['<i class="fa fa-check"></i> 确定',
+                '<i class="fa fa-close"></i> 关闭'],
+            btn1:options.onClickSure,
+            success:function (layero, index) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.init(options);
+            }
+        })
+    },
+    //下载附件
+    downLoadFile:function (options) {
+        var config = $.extend(true, { method: 'post' }, options);
+        var $iframe = $('<iframe id="down-file-iframe" />');
+        var $form = $('<form target="down-file-iframe" method="' + config.method + '" />');
+        config.url += config.url.match(/\?/) ? "&" : "?";
+        if (typeof csrfToken === "undefined") {
+        }else{
+            config.url += "csrfToken=" + csrfToken;
+        }
+        $form.attr('action', config.url);
+        for (var key in config.data) {
+            $form.append('<input type="hidden" name="' + key + '" value=\'' + config.data[key] + '\' />');
+        }
+        $iframe.append($form);
+        $(document.body).append($iframe);
+        $form[0].submit();
+        $iframe.remove();
+    },
+
+    //数组拆分
+    splitArray:function(arr,len){
+        var result = [];
+        for (var i = 0; i < arr.length; i++) {
+            result.push(arr.slice(i,i+len));
+            i+=len-1;
+        }
+        return result;
+    },
+    //度转度分秒
+    formatDegree:function(value){
+        value = Math.abs(value);
+        var v1 = Math.floor(value);//度
+        var v2 = Math.floor((value - v1) * 60);//分
+        var v3 = Math.round((value - v1) * 3600 % 60);//秒
+        return v1+","+v2+","+v3;
+    },
+    //度分秒转度
+    degreeConvertBack:function(value){
+        var du = value.split(",")[0];
+        var fen = value.split(",")[1];
+        var miao = value.split(",")[2];
+        return Math.abs(du) + (Math.abs(fen)/60 + Math.abs(miao)/3600);
+    },
+    /**
+     * 结果非空判断
+     * @param param
+     * @returns {string}
+     */
+    dealNull:function (param){
+        if(param == null || param === ""){
+            return '';
+        }else{
+            return param;
+        }
+    },
+    //textarea字数校验插件
+    limitInputLen:function (inputobj, limitLen, isShowSpanFlag) {
+        try {
+            var currentInputVal = $(inputobj).val();
+            var cn_InputLen = 0;
+            var reg = /%u/g;            	//正则表达式 中文及中文标点符号
+            var resultCn = escape(currentInputVal).match(reg);
+            if(resultCn){
+                cn_InputLen = (resultCn.length);			//计算输入的中文字段长度
+            }
+            var currentInputLen = currentInputVal.length + cn_InputLen; //当前已输入长度(由于中文字段长度算两位，原长度需再加上中文字段长度)。
+            if (currentInputLen > limitLen) {//当输入的字段长度超过限制长度时
+                var strlen = 0;
+                var realityVal = "";
+                for(var i = 0; i < limitLen;i++){//轮循已输入的字符串，截取符合限制长度的值
+                    if(currentInputVal.charCodeAt(i) > 255){ //中文字段
+                        strlen += 2;
+                    }else{
+                        strlen++;
+                    }
+                    if(strlen > limitLen){
+                        if(currentInputVal.charCodeAt(i) > 255){
+                            strlen = strlen-2;
+                        }else{
+                            strlen = strlen-1;
+                        }
+                        break ;
+                    }else{
+                        realityVal += currentInputVal.charAt(i);
+                    }
+                }
+                $(inputobj).val(realityVal);  //文本输入框中，截取符合限制长度的值。
+                if(!isShowSpanFlag){
+                    if ($(inputobj).parent().children("span").html() == null) {
+                        $(inputobj).after("<span><font color='red'>" + strlen + "/" + limitLen + "</font></span>");
+                    } else {
+                        $(inputobj).parent().find("span").html("<font color='red'>" + strlen + "/" + limitLen + "</font>");
+                    }
+                }
+
+            }else{
+                if(!isShowSpanFlag){
+                    if ($(inputobj).parent().children("span").html() == null) {
+                        $(inputobj).after("<span><font color='red'>" + currentInputLen + "/" + limitLen + "</font></span>");
+                    } else {
+                        $(inputobj).parent().find("span").html("<font color='red'>" + currentInputLen + "/" + limitLen + "</font>");
+                    }
+                }
+            }
+        } catch (e) {
+            alert("系统错误，请稍后重试！")
+        }
+    },
+    encrypt:function(word){
+        var key = CryptoJS.enc.Utf8.parse("1234123412ABCDEF");  //十六位十六进制数作为密钥
+        var iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+        var srcs = CryptoJS.enc.Utf8.parse(word);
+        var encrypted = CryptoJS.AES.encrypt(srcs, key,
+            {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+        return encrypted.ciphertext.toString();
+    },
+    decrypt:function(word){
+        var key = CryptoJS.enc.Utf8.parse("1234123412ABCDEF");  //十六位十六进制数作为密钥
+        var iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+        var srcs = CryptoJS.enc.Utf8.parse(word);
+        var decrypted = CryptoJS.AES.decrypt(srcs, key,
+            {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+        return decrypted.ciphertext.toString();
+    }
+
+});
+$.fn.serializeObject=function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+}

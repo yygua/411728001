@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!-- saved from url=(0109)https://wryjc.mee.gov.cn/gkpt/detail/?id=R0IgN5QhFUToapSdbnnc7pHVXskadDPZ0jsjLcp76NY6gwkiWr3n81b%2B8XpHdDO%2B -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="./layui.css" media="all">
+<link rel="stylesheet" href="./base.css" media="all">
+<script type="text/javascript">
+    var baseServerUrl = "/gkpt/";
+</script>
+<script type="text/javascript" src="./jquery-3.6.0.min.js.下载"></script>
+<script type="text/javascript" src="./layui.js.下载"></script>
+<script type="text/javascript" src="./utils.js.下载"></script>
+<script type="text/javascript" src="./CommonDic.js.下载"></script>
+    <title>HbSjcjQySgjg</title>
+<style>
+    .layui-table-view {
+         margin: 0 0;
+    }
+    .layui-this{
+        background-color:#449d59;
+        color:#F9FDFF;
+    }
+</style><link id="layuicss-layer" rel="stylesheet" href="./layer(2).css" media="all"><link id="layuicss-laydate" rel="stylesheet" href="./laydate.css" media="all"></head>
+
+<body>
+<div class="layui-tab layui-col-xs12" lay-filter="demo" lay-data="{ height:332}">
+    <div class="layui-tab-content">
+        <div id="topLayout">
+            <div id="searchLayout" class="searchLayout">
+                <form class="layui-form">
+                    <table class="layui-table no-border-table">
+                        <tbody><tr>
+                            <td style="width: 120px">监测时间</td>
+                            <td style="width:160px;float:left">
+                               <!-- <input id="jcnd" name="jcnd" class="layui-input" style="width:100px;float:left">-->
+                                <select id="jcnd" name="jcnd" lay-filter="jcnd" lay-verify="required" lay-search="">
+                                <option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024" selected="">2024</option></select><div class="layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="2024" class="layui-input"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="2021" class="">2021</dd><dd lay-value="2022" class="">2022</dd><dd lay-value="2023" class="">2023</dd><dd lay-value="2024" class="layui-this">2024</dd></dl></div>
+                            </td>
+                            <td hidden=""><select id="sheng" lay-verify="required" name="sheng" lay-filter="sheng" lay-search="" style="width: 160px;float: left"><option value=""></option><option value="130000">河北省</option><option value="140000">山西省</option><option value="210000">辽宁省</option><option value="220000">吉林省</option><option value="310000">上海</option><option value="230000">黑龙江省</option><option value="340000">安徽省</option><option value="360000">江西省</option><option value="410000" selected="">河南省</option><option value="430000">湖南省</option><option value="440000">广东省</option><option value="450000">广西壮族自治区</option><option value="520000">贵州省</option><option value="540000">西藏自治区</option><option value="630000">青海省</option><option value="640000">宁夏回族自治区</option><option value="530000">云南省</option><option value="660000">新疆兵团</option></select><div class="layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="河南省" class="layui-input"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="130000" class="">河北省</dd><dd lay-value="140000" class="">山西省</dd><dd lay-value="210000" class="">辽宁省</dd><dd lay-value="220000" class="">吉林省</dd><dd lay-value="310000" class="">上海</dd><dd lay-value="230000" class="">黑龙江省</dd><dd lay-value="340000" class="">安徽省</dd><dd lay-value="360000" class="">江西省</dd><dd lay-value="410000" class="layui-this">河南省</dd><dd lay-value="430000" class="">湖南省</dd><dd lay-value="440000" class="">广东省</dd><dd lay-value="450000" class="">广西壮族自治区</dd><dd lay-value="520000" class="">贵州省</dd><dd lay-value="540000" class="">西藏自治区</dd><dd lay-value="630000" class="">青海省</dd><dd lay-value="640000" class="">宁夏回族自治区</dd><dd lay-value="530000" class="">云南省</dd><dd lay-value="660000" class="">新疆兵团</dd></dl></div></td>
+                        </tr>
+                    </tbody></table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <ul class="layui-tab-title">
+        <li class="layui-this blue" onclick="tabChange(&#39;fq&#39;)">废气</li>
+        <li onclick="tabChange(&#39;fs&#39;)">废水</li>
+        <li onclick="tabChange(&#39;wzz&#39;)">无组织</li>
+        <li onclick="tabChange(&#39;zbhj&#39;)">周边环境</li>
+        <li onclick="tabChange(&#39;zs&#39;)">噪声</li>
+            <table id="queryMore" style="float: right; display: none;" lay-filter="table">
+                <tbody><tr>
+                    <td><button id="morequery" onclick="queryMore();" style="background-color: #449d59;margin-right: 50px;height: 36px;" class="layui-btn layui-btn-sm layui-btn-primary"><i class="fa fa-search"></i>自行监测数据</button></td>
+                </tr>
+                <tr hidden="" class="rqkz" style="font-size: 6px">
+                    <td>需要用360浏览器访问</td>
+                </tr>
+            </tbody></table>
+    </ul>
+    <table id="table" lay-filter="table">
+    </table><div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1" lay-id="table" style=" height:465px;"><div class="layui-table-box"><div class="layui-table-header"><table cellspacing="0" cellpadding="0" border="0" class="layui-table"><thead><tr><th data-field="qymc" data-key="1-0-0" class=""><div class="layui-table-cell laytable-cell-1-0-0" align="center"><span>企业名称</span></div></th><th data-field="jcdmc" data-key="1-0-1" class=""><div class="layui-table-cell laytable-cell-1-0-1" align="center"><span>监测点名称</span></div></th><th data-field="jcxmmc" data-key="1-0-2" class=""><div class="layui-table-cell laytable-cell-1-0-2" align="center"><span>项目名称</span></div></th><th data-field="scnd" data-key="1-0-3" class=""><div class="layui-table-cell laytable-cell-1-0-3" align="center"><span>实测浓度</span></div></th><th data-field="zsnd" data-key="1-0-4" class=""><div class="layui-table-cell laytable-cell-1-0-4" align="center"><span>折算浓度</span></div></th><th data-field="cysj" data-key="1-0-5" class=""><div class="layui-table-cell laytable-cell-1-0-5" align="center"><span>采样时间</span></div></th><th data-field="jcxmdw" data-key="1-0-6" class=""><div class="layui-table-cell laytable-cell-1-0-6" align="center"><span>监测项目单位</span></div></th></tr></thead></table></div><div class="layui-table-body layui-table-main" style="height: 383px;"><table cellspacing="0" cellpadding="0" border="0" class="layui-table"><tbody></tbody></table><div class="layui-none">暂无数据</div></div></div><div class="layui-table-page layui-hide"><div id="layui-table-page1"></div></div><style>.laytable-cell-1-0-0{ width: 15%px; }.laytable-cell-1-0-1{ width: 15%px; }.laytable-cell-1-0-2{ width: 15%px; }.laytable-cell-1-0-3{ width: 15%px; }.laytable-cell-1-0-4{ width: 15%px; }.laytable-cell-1-0-5{ width: 15%px; }.laytable-cell-1-0-6{ width: 10%px; }</style></div>
+</div>
+<script type="text/javascript">
+    var qybh = "R0IgN5QhFUToapSdbnnc7pHVXskadDPZ0jsjLcp76NY6gwkiWr3n81b+8XpHdDO+";
+    var sheng = "410000";
+    var layer = null;
+    var form = null;
+    var table = null;
+    var laydate = null;
+    var mWhere = {uuid: $.getUUID()};
+    var sjlb='A';
+    var date = new Date();
+    var year= date.getFullYear();
+    mWhere.qybh=qybh;
+    mWhere.sheng=sheng;
+    mWhere.jcnd = year;
+    layui.use([ 'layer', 'form' ,'table','laydate','element','jquery'], function(layer, form) {
+        layer = layui.layer;
+        form = layui.form;
+        table = layui.table;
+        laydate = layui.laydate;
+        //日期
+        //日期范围
+        /*$("#jcnd").val(thisyear);*/
+        $(".layui-this").addClass("blue");
+        /*laydate.render({
+            elem: '#jcnd'
+            ,type: 'year',
+            min: '2021',
+            max:thisyear,
+            showBottom: false,
+            ready: function (date) {
+                $(".layui-laydate").on('click', 'ul li', function () {
+                    $(".layui-laydate").remove();
+                });
+            },
+            change: function (value, date, endDate) {
+                if(value>='2021'&value<=thisyear){
+                    $("#jcnd").val(value);
+                    query();
+                }
+            }
+        });*/
+        if(sheng=="110000"||sheng=="340000"||sheng=="370000"||sheng=="510000"||sheng=="610000"){
+           $("#morequery").html("历史自行监测数据");
+        }
+            for (var i = 2021; i <= year; i++) {
+                // 在obj对象下添加条目，文本为i，值为i
+                if(i==year){
+                    $("#jcnd").append($("<option value="+i+" selected>"+i+"</option>"));
+                }else{
+                    $("#jcnd").append($("<option value="+i+">"+i+"</option>"));
+                }
+            }
+        $("#jcnd").val(year);
+        form.render();
+        form.on('select(jcnd)', function(data){
+            mWhere.jcnd = data.value;
+               /* switch (data.value) {
+                    case "2021":
+                        mWhere.jcnd = "2021";
+                        break;
+                    case "2022":
+                        mWhere.jcnd = "2022";
+                        break;
+                    case "2023":
+                        mWhere.jcnd = "2023";
+                        break;
+                }*/
+                query();
+        });
+
+        var items = ["位运算"];
+        FrameWH();
+        for(var i = 0;i<items.length;i++){
+            console.log(items[i]);
+        }
+
+        function FrameWH() {
+            var h = $(window).height()-100;
+            $("iframe").css("height",h+"px");
+        }
+        form.on('input(jcnd)',function (data) {
+            query();
+        });
+
+        $(window).resize(function () {
+            FrameWH();
+        });
+            query();
+    });
+
+    function   queryMore(){
+        if($("#sheng").val()==""){
+            if(sheng!=""){
+                if(sheng=="650000"){
+                    window.open("http://www.xjmic.com:8012/PollutionMonitor-xj/publish.do");
+                }else if(sheng=="620000"){
+                    window.open("http://125.74.7.100:8111/pollutionMonitor/publish.action");
+                }else if(sheng=="610000"){
+                    window.open("http://113.140.66.227:9777/envinfo_ps/gjxkzpublicity/list");
+                }else if(sheng=="510000"){
+                    window.open("http://103.203.219.138:6666/hb/scgkpt");
+                }else if(sheng=="500000"){
+                    window.open("http://119.84.149.34:20003/publish2/dataSearchPub/entList.aspx");
+                }else if(sheng=="460000"){
+                    window.open("http://218.77.183.189:8989/PollutionMonitor/publish.action");
+                }else if(sheng=="420000"){
+                    window.open("http://223.76.234.172:9001/epsm/");
+                }else if(sheng=="370000"){
+                    window.open("http://fb.sdem.org.cn:8801/zxjc/index.htm");
+                }else if(sheng=="350000"){
+                    window.open("http://wryfb.fjemc.org.cn/index.aspx");
+                }else if(sheng=="320000"){
+                    window.open("http://218.94.78.61:8080/newPub/web/home.htm");
+                }else if(sheng=="120000"){
+                    window.open("https://zxjc.sthj.tj.gov.cn:8888/PollutionMonitor-tj/publish.do ");
+                }else if(sheng=="110000"){
+                    window.open("http://xxgk.bevoice.com.cn/monitor-pub/index.do");
+                }else if(sheng=="330000"){
+                    window.open("http://223.4.64.201:8888/gkpt/mainZxjc/330000");
+                }else if(sheng=="150000"){
+                    window.open("http://106.74.0.139:5380/PollutionMonitor/publish.action");
+                }else if(sheng=="610000"){
+                    window.open("http://113.140.66.227:9777/envinfo_ps/gjxkzpublicity/list");
+                }
+            }
+        }else if($("#sheng").val()=="340000"){
+                window.open("http://39.145.0.253:8081/index");
+        }
+    }
+
+    function tabChange(type){
+        if(type=="fq"){
+            sjlb="A";
+        }else if(type=="fs"){
+            sjlb="B";
+        }else if(type=="wzz"){
+            sjlb="C";
+        }else if(type=="zbhj"){
+            sjlb="D";
+        }else if(type=="zs"){
+            sjlb="E";
+        }
+        $("li").removeClass("blue");
+        query();
+    }
+
+    $("#sheng").CommonDic({
+        type: "select",
+        datasource: "dictionary",
+        params: "346",
+        elementName: "sheng",
+        selectValue: sheng,
+        required: true,
+        onLoadComplate: function (data) {
+            //form.render();
+        }
+    });
+
+    function query() {
+        if($("#sheng").val()!=""||sheng=="") {
+            if($("#sheng").val()!="340000"){
+                $("#queryMore").hide();
+            }
+        }
+        if(sheng=="510000"){
+            $(".layui-tab-title").css("height","55px");
+            $(".rqkz").show();
+        }
+        //监测时间
+        var ksrq="" ;
+        var jzrq="";
+            ksrq += mWhere.jcnd;
+            jzrq += mWhere.jcnd;
+        mWhere.ksrq = ksrq+"-01-01";
+        mWhere.jzrq = jzrq+"-12-31";
+            if (sjlb == 'A') {
+                queryFqsgjg();
+            }
+            if (sjlb == 'B') {
+                queryFssgjg();
+            }
+            if (sjlb == 'C') {
+                queryWzzsgjg();
+            }
+            if (sjlb == 'D') {
+                queryZbsgjg();
+            }
+            if (sjlb == 'E') {
+                queryZssgjg();
+            }
+    }
+
+    /**
+     * 手工废气数据
+     */
+    function queryFqsgjg() {
+        tableIns = table.render({
+            elem: '#table',
+            height: 'full-195',
+            url: "/gkpt/zxjc/jcjg/querySgFqListGkpt",
+            method: 'GET',
+            where: mWhere,
+            request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize',
+            },
+            response: {
+                dataName: 'list',
+                countName: 'total'
+            },
+            page: true,
+            limit: 20,
+            limits: [10, 20, 30, 50, 100, 500],
+            loading: true,//是否显示加载条
+            toolbar: false,
+            defaultToolbar: false,
+            title: "手工废气数据",
+            text: {
+                none: '暂无数据'
+            },
+            even: false,
+            cols: [[
+                {
+                    title: "企业名称",
+                    field: "qymc",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "监测点名称",
+                    field: "jcdmc",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "项目名称",
+                    field: "jcxmmc",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "实测浓度",
+                    field: "scnd",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "折算浓度",
+                    field: "zsnd",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "采样时间",
+                    field: "cysj",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "监测项目单位",
+                    field: "jcxmdw",
+                    width: '10%',
+                    align: 'center'
+                }
+
+            ]],
+            done: function (res, curr, count) {
+                res.code = 0;
+                res.msg = "请求成功";
+                return res;
+            }
+        })
+    }
+
+    /**
+     * 手工废水
+     */
+    function queryFssgjg() {
+        tableIns = table.render({
+            elem: '#table',
+            height: 'full-195',
+            url: "/gkpt/zxjc/jcjg/querySgFsListGkpt",
+            method: 'GET',
+            where: mWhere,
+            request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize',
+            },
+            response: {
+                dataName: 'list',
+                countName: 'total'
+            },
+            page: true,
+            limit: 20,
+            limits: [10, 20, 30, 50, 100, 500],
+            loading: true,//是否显示加载条
+            toolbar: false,
+            //defaultToolbar: ['filter', 'exports'],
+            title: "手工废气数据",
+            text: {
+                none: '暂无数据'
+            },
+            even: false,
+            cols: [
+                [
+                    {
+                        title: "企业名称",
+                        field: "qymc",
+                        width: '20%',
+                        align: 'center'
+                    },
+                    {
+                        title: "监测点名称",
+                        field: "jcdmc",
+                        width: '20%',
+                        align: 'center'
+                    },
+                    {
+                        title: "项目名称",
+                        field: "jcxmmc",
+                        width: '15%',
+                        align: 'center'
+                    },
+                    {
+                        title: "采样时间",
+                        field: "cysj",
+                        width: '15%',
+                        align: 'center'
+                    },
+                    {
+                        title: "实测浓度",
+                        field: "zsnd",
+                        width: '15%',
+                        align: 'center'
+                    },
+                    {
+                        title: "监测项目单位",
+                        field: "jcxmdw",
+                        width: '15%',
+                        align: 'center'
+                    }
+                ]
+            ],
+            done: function (res, curr, count) {
+                res.code = 0;
+                res.msg = "请求成功";
+                return res;
+            }
+        })
+    }
+
+    /**
+     * 手工无组织数据
+     */
+    function queryWzzsgjg() {
+        tableIns = table.render({
+            elem: '#table',
+            height: 'full-195',
+            url: "/gkpt/zxjc/jcjg/querySgWzzListGkpt",
+            method: 'GET',
+            where: mWhere,
+            request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize',
+            },
+            response: {
+                dataName: 'list',
+                countName: 'total'
+            },
+            page: true,
+            limit: 20,
+            limits: [10, 20, 30, 50, 100, 500],
+            loading: true,//是否显示加载条
+            toolbar: false,
+            //defaultToolbar: ['filter', 'exports'],
+            title: "手工无组织数据",
+            text: {
+                none: '暂无数据'
+            },
+            even: false,
+            cols: [
+                [
+                    {
+                        title: "企业名称",
+                        field: "qymc",
+                        width: '20%',
+                        align: 'center'
+                    },
+                    {
+                        title: "监测点名称",
+                        field: "jcdmc",
+                        width: '20%',
+                        align: 'center'
+                    },
+                    {
+                        title: "项目名称",
+                        field: "jcxmmc",
+                        width: '15%',
+                        align: 'center'
+                    },
+
+                    {
+                        title: "采样时间",
+                        field: "cysj",
+                        width: '15%',
+                        align: 'center'
+                    },
+                    {
+                        title: "实测浓度",
+                        field: "zsnd",
+                        width: '15%',
+                        align: 'center'
+                    },
+                    {
+                        title: "监测项目单位",
+                        field: "jcxmdw",
+                        width: '15%',
+                        align: 'center'
+                    }
+                ]
+            ],
+            done:function (res, curr, count) {
+                res.code = 0;
+                res.msg = "请求成功";
+                return res;
+            }
+        })
+    }
+
+    /**
+     * 手工周边数据
+     */
+    function queryZbsgjg() {
+        tableIns = table.render({
+            elem: '#table',
+            height: 'full-195',
+            url: "/gkpt/zxjc/jcjg/querySgZbListGkpt",
+            method: 'GET',
+            where: mWhere,
+            request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize',
+            },
+            response: {
+                dataName: 'list',
+                countName: 'total'
+            },
+            page: true,
+            limit: 20,
+            limits: [10, 20, 30, 50, 100, 500],
+            loading: true,//是否显示加载条
+            toolbar: false,
+            //defaultToolbar: ['filter', 'exports'],
+            title: "手工周边环境数据",
+            text: {
+                none: '暂无数据'
+            },
+            even: false,
+            cols: [[
+                {
+                    title: "企业名称",
+                    field: "qymc",
+                    width: '20%',
+                    align: 'center'
+                },
+                {
+                    title: "监测点名称",
+                    field: "jcdmc",
+                    width: '20%',
+                    align: 'center'
+                },
+                {
+                    title: "项目名称",
+                    field: "jcxmmc",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "采样时间",
+                    field: "cysj",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "实测浓度",
+                    field: "zsnd",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "监测项目单位",
+                    field: "jcxmdw",
+                    width: '15%',
+                    align: 'center'
+                }
+            ]],
+            done: function (res, curr, count) {
+                res.code = 0;
+                res.msg = "请求成功";
+                return res;
+            }
+        })
+    }
+
+    /**
+     * 手工噪声数据
+     */
+    function queryZssgjg() {
+        tableIns = table.render({
+            elem: '#table',
+            height: 'full-195',
+            url: "/gkpt/zxjc/jcjg/querySgZsListGkpt",
+            method: 'GET',
+            where: mWhere,
+            request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize',
+            },
+            response: {
+                dataName: 'list',
+                countName: 'total'
+            },
+            page: true,
+            limit: 20,
+            limits: [10, 20, 30, 50, 100, 500],
+            loading: true,//是否显示加载条
+            toolbar: false,
+            //defaultToolbar: ['filter', 'exports'],
+            title: "手工噪声数据",
+            text: {
+                none: '暂无数据'
+            },
+            even: false,
+            cols: [[
+                {
+                    title: "企业名称",
+                    field: "qymc",
+                    width: '20%',
+                    align: 'center'
+                },
+                {
+                    title: "监测点名称",
+                    field: "jcdmc",
+                    width: '20%',
+                    align: 'center'
+                },
+                {
+                    title: "项目名称",
+                    field: "jcxmmc",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "实测浓度",
+                    field: "scnd",
+                    width: '15%',
+                    align: 'center'
+                },
+
+                {
+                    title: "监测时间",
+                    field: "cysj",
+                    width: '15%',
+                    align: 'center'
+                },
+                {
+                    title: "监测项目单位",
+                    field: "jcxmdw",
+                    width: '15%',
+                    align: 'center'
+                }
+            ]],
+            done: function (res, curr, count) {
+                res.code = 0;
+                res.msg = "请求成功";
+                return res;
+            }
+        })
+    }
+</script>
+
+
+</body></html>

@@ -1,0 +1,136 @@
+input.button.normal,label.button.normal{
+
+height: 28px;
+cursor:pointer;
+background:#6FB3E0 !important;
+border: none;
+}
+input.button.normal2{
+width: 120px;
+height: 28px;
+cursor:pointer;
+background:#6FB3E0 !important;
+border: none;
+}
+input.button.normal1{
+width: 144px;
+height: 28px;
+cursor:pointer;
+background:#6FB3E0 !important;
+border: none;
+}
+input.button.serch {
+
+height: 28px;
+cursor:pointer;
+text-indent: 15px;
+background:url(../images/Btn_serch.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+input.button.save {
+width: 85px;
+cursor:pointer;
+height: 28px;
+text-indent: 15px;
+background:url(../images/save.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+
+input.button.submit {
+width: 85px;
+cursor:pointer;
+height: 28px;
+text-indent: 15px;
+background:url(../images/ok.png) no-repeat;
+border: none;
+background-size:cover;
+}
+input.button.cancel {
+width: 85px;
+cursor:pointer;
+height: 28px;
+text-indent: 15px;
+background:url(../images/cancel.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+input.button.add {
+width: 85px;
+cursor:pointer;
+height: 28px;
+text-indent: 15px;
+background:url(../images/add.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+
+input.buttondj.add {
+cursor:pointer;
+text-indent: 15px;
+background:url(../images/add.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+input.button.delete {
+width: 85px;
+cursor:pointer;
+height: 28px;
+text-indent: 15px;
+background:url(../images/delete.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+input.button.edit {
+width: 85px;
+cursor:pointer;
+height: 28px;
+text-indent: 15px;
+background:url(../images/edit.gif) no-repeat;
+border: none;
+background-size:cover;
+}
+input.btn_edit{
+  height:22px;
+  margin:auto 10px;
+  border:1px solid #1e71bf;
+  color:#000;
+  cursor: pointer;
+  background:-moz-linear-gradient(top, #afdbfd, #73abdf);
+  background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#afdbfd), to(#73abdf));
+  Filter:progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#afdbfd, endColorStr=#73abdf);
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+}
+
+.button {
+width: 90px;
+height: 22px;
+margin: 0;
+padding: 0;
+border: none;
+color: #fff;
+cursor: hand;
+text-align: center;
+line-height: 22px;
+font-family: "微软雅黑";
+
+}
+
+.buttondj {
+margin: 0;
+padding: 0;
+border: none;
+color: #fff;
+cursor: hand;
+text-align: center;
+font-family: "微软雅黑";
+font-weight: bold;
+}
+
+/*企业注册行业选择页面调整按钮高度*/
+.typeh{
+height:24px!important;
+}
